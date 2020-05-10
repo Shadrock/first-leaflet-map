@@ -3,10 +3,14 @@ Taken from awoodruf: http://maptimeboston.github.io/leaflet-intro/
 # Leaflet: Make a web map!
 
 So. You want to make a web map. Don't worry; it's easy! This is an introduction to web maps using Leaflet. It was written by Andy Woodruff, Ryan Mullins and Cristen Jones for Maptime Boston, but you don't need to be with us to follow along. So let's go!
-What is Leaflet?
+
+## What is Leaflet?
 Leaflet is an open-source JavaScript library for interactive web maps. It's lightweight, simple, and flexible, and is probably the most popular open-source mapping library at the moment. Leaflet is developed by Vladimir Agafonkin (currently of MapBox) and other contributors.
+
 What Leaflet does: "Slippy" maps with tiled base layers, panning and zooming, and feature layers that you supply. It handles various basic tasks like converting data to map layers and mouse interactions, and it's easy to extend with plugins. It will also work well across most types of devices. See Anatomy of a Web Map for an introduction to the most common kinds of web maps, which is what Leaflet is good for.
+
 What Leaflet does not do: Provide any data for you! Leaflet is a framework for showing and interacting with map data, but it's up to you to provide that data, including a basemap. Leaflet is also not GIS, although it can be combined with tools like CartoDB for GIS-like capabilities. If you need total freedom of form, interaction, transitions, and map projections, consider working with something like D3.
+
 How this tutorial works: It's structured around examples that progressively build upon one another, starting from scratch and ending with slightly advanced techniques. It assumes a basic knowledge of HTML and JavaScript, or at the very least assumes the will to tinker with the code to better understand what it does—and how to use it for your own work. It won't explain every little object or array, but will contain plenty of links. Many code blocks show only a snippet of code, highlighting the changes over previous examples. Click the "View this example on its own" link underneath a map to see complete code. For thorough documentation, see the Leaflet site.
 
 *BEFORE YOU START!*
@@ -63,10 +67,12 @@ Let's focus on the code in that `<script>` tag near the end. What did we do?
 1.	Created a map variable
 2.	Used `L.map()` to initialize the map object, passing it the id of the div where we want the map to go
 3.	Used the `setView()` method to center the initial map view on Boston (latitude 42.35, longitude -71.08, and zoom level 13)
-4.  Used `Used L.tileLayer()` to create a base layer of map tiles, specifying a URL template for the tile images. In this case we're using MAPC's basemap, but there are many options out there. {z}/{x}/{y} is a template that Leaflet uses to find tiles at the correct zoom, x, and y coordinates. (See Anatomy of a Web Map). We also specified a few options:
+4.  Used `L.tileLayer()` to create a base layer of map tiles, specifying a URL template for the tile images. In this case we're using MAPC's basemap, but there are many options out there. {z}/{x}/{y} is a template that Leaflet uses to find tiles at the correct zoom, x, and y coordinates. (See Anatomy of a Web Map). We also specified a few options:
 o	Attribution text to appear in the corner. Always properly attribute your map data!
 o	Maximum and minimum zoom levels. Some tile sets such as this one only cover a certain zoom range. These options prevent the user from zooming beyond that range and seeing a blank map.
 5.	Used the `addTo()` method to add this tile layer to the map we just created
+
+<iframe src="https://shadrock.github.io/first-leaflet-map/leaflet_map.html" frameborder="0" width="200" height="200"> </iframe>
 
 ## More layers
 +-
