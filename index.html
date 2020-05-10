@@ -43,7 +43,7 @@
     }).addTo(map);
 
     // load GeoJSON from an external file
-    $.getJSON("neighborhoods.geojson",function(hoodData){
+    $.getJSON("data/neighborhoods.geojson",function(hoodData){
       L.geoJson( hoodData
         , {
       style: function(feature){
@@ -63,7 +63,7 @@
     }).addTo(map);
     });
 
-    $.getJSON("rodents.geojson",function(data){
+    $.getJSON("data/rodents.geojson",function(data){
         var ratIcon = L.icon({
           iconUrl: 'http://andywoodruff.com/maptime-leaflet/rat.png',
           iconSize: [60,50]

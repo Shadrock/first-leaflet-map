@@ -40,7 +40,7 @@
 
     // Load GeoJSON from an external file
 
-    $.getJSON("rodents.geojson",function(data){
+    $.getJSON("data/rodents.geojson",function(data){
       var locations = data.features.map(function(rat) {
     var location = rat.geometry.coordinates.reverse();
     location.push(0.5);
