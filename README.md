@@ -25,7 +25,7 @@ These needs to be changed to:
 **What did we change?** We’ve updated the version of Leaflet: in the tutorial it’s version 1.0.3, but we need to upgrade to version 1.6.0 for Github pages to work properly.
 
 ## Replacement No. 2
-In the section labeled, “Easy! Now let's map our own data!” you’ll download a file for jQuery and reference it in your code like this.
+In the section labeled, “Easy! Now let's map our own data!” you’re asked to download a file for jQuery and reference it in your code like this.
 
 ```HTML
 <script src="jquery-2.1.1.min.js"></script>
