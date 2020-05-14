@@ -1,4 +1,4 @@
-# Making Leaflet Rat Maps!
+# Code corrections for Leaflet Rat Maps!
 
 This repository contains outputs and code created using Maptime Boston's fantastic “Boston Ratmap tutorial” which you will be following for this class. You can find [the tutorial here](http://maptimeboston.github.io/leaflet-intro/) and the associated [Github repository for it here](https://github.com/maptimeBoston/leaflet-intro).
 
