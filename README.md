@@ -58,7 +58,7 @@ and
 ```HTML
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.3.0/dist/MarkerCluster.Default.css" />
 ```
-*What did we change?* Once again, updating via API versus downloading a file.
+**What did we change?** Once again, updating via API versus downloading a file.
 
 ## Replacement No. 4 - Last one!
 In the section labeled, “Let's summarize in a more visual way” you’ll use another plugin for to create a heatmap Leaflet. As you can guess by now, this plugin is out of date? The old code in the tutorial is:
