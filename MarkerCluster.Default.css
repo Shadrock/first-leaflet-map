@@ -1,24 +1,24 @@
 /* This file is a local copy of the cluster .css. I am using it to demonstrate changing cluster colors. */
 
 .marker-cluster-small {
-	background-color: rgba(32, 182, 227, 0.6);
+	background-color: rgba(92, 146, 252, 0.6);
 	}
 .marker-cluster-small div {
-	background-color: rgba(16, 190, 243, 0.6);
+	background-color: rgba(55, 120, 251, 0.6);
 	}
 
 .marker-cluster-medium {
-	background-color: rgba(32, 182, 227, 0.6);
+	background-color: rgba(92, 146, 252, 0.8);
 	}
 .marker-cluster-medium div {
-	background-color: rgba(8, 143, 185, 0.6);
+	background-color: rgba(30, 104, 250, 0.8);
 	}
 
 .marker-cluster-large {
-	background-color: rgba(32, 182, 227, 0.6);
+	background-color: rgba(92, 146, 252, 1);
 	}
 .marker-cluster-large div {
-	background-color: rgba(6, 114, 146, 0.6);
+	background-color: rgba(4, 75, 215, 1);
 	}
 
 	/* IE 6-8 fallback colors */
