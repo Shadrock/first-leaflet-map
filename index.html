@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <title>Making Leaflet Maps!</title>
   <!-- Adding in the Leaflet CSS file -->
@@ -15,65 +16,84 @@
   <script src="https://unpkg.com/leaflet.markercluster@1.3.0/dist/leaflet.markercluster.js"></script> <!-- reaplaces <script src="./Leaflet.markercluster-1.0.5/leaflet.markercluster.js"></script>  -->
 
   <style>
-    #map{ width: 900px; height: 500px; }
-      h1 {font-family: Helvetica,Arial,Verdana;
-        font-size: 80px}
-      p {font-family: Helvetica,Arial,Verdana;
-        font-size: 20px}
-      p2 {font-family: Helvetica,Arial,Verdana;
-        font-size: 14px}
+    #map {
+      width: 900px;
+      height: 500px;
+    }
+
+    h1 {
+      font-family: Helvetica, Arial, Verdana;
+      font-size: 80px
+    }
+
+    p {
+      font-family: Helvetica, Arial, Verdana;
+      font-size: 20px
+    }
+
+    p2 {
+      font-family: Helvetica, Arial, Verdana;
+      font-size: 14px
+    }
   </style>
 </head>
+
 <body>
   <div id="narrative">
-    <p><h1>Leaflet Maps!</h1></p>
+    <p>
+    <h1>Leaflet Maps!</h1>
+    </p>
     <p>Below are examples from the tutorial that we'll be following, but use the updated code.</p>
     <hr>
   </div>
 
   <div id="map">
-  <script>
+    <script>
+      // initialize the map
+      var map = L.map('map').setView([42.35, -71.08], 13);
 
-  // initialize the map
-  var map = L.map('map').setView([42.35, -71.08], 13);
+      // load a tile layer
+      L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', {
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
+        maxZoom: 17,
+        minZoom: 9
+      }).addTo(map);
 
-  // load a tile layer
-  L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png',
-    {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Data by <a href="http://mass.gov/mgis">MassGIS</a>',
-      maxZoom: 17,
-      minZoom: 9
-    }).addTo(map);
+      // load GeoJSON from an external file
+      $.getJSON("data/neighborhoods.geojson", function(hoodData) {
+        L.geoJson(hoodData, {
+          style: function(feature) {
+            var fillColor,
+              density = feature.properties.density;
+            if (density > 80) fillColor = "#993404";
+            else if (density > 40) fillColor = "#d95f0e";
+            else if (density > 20) fillColor = "#fe9929";
+            else if (density > 10) fillColor = "#fed98e";
+            else if (density > 0) fillColor = "#ffffd4";
+            else fillColor = "#f7f7f7"; // no data
+            return {
+              color: "#999",
+              weight: 1,
+              fillColor: fillColor,
+              fillOpacity: .8
+            };
+          },
+          onEachFeature: function(feature, layer) {
+            layer.bindPopup("<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile")
+          }
+        }).addTo(map);
+      });
 
-    // load GeoJSON from an external file
-    $.getJSON("data/neighborhoods.geojson",function(hoodData){
-      L.geoJson( hoodData
-        , {
-      style: function(feature){
-        var fillColor,
-            density = feature.properties.density;
-        if ( density > 80 ) fillColor = "#993404";
-        else if ( density > 40 ) fillColor = "#d95f0e";
-        else if ( density > 20 ) fillColor = "#fe9929";
-        else if ( density > 10 ) fillColor = "#fed98e";
-        else if ( density > 0 ) fillColor = "#ffffd4";
-        else fillColor = "#f7f7f7";  // no data
-        return { color: "#999", weight: 1, fillColor: fillColor, fillOpacity: .8 };
-      },
-      onEachFeature: function( feature, layer ){
-        layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.density + " rats per square mile" )
-      }
-    }).addTo(map);
-    });
-
-    $.getJSON("data/rodents.geojson",function(data){
+      $.getJSON("data/rodents.geojson", function(data) {
         var ratIcon = L.icon({
           iconUrl: 'http://andywoodruff.com/maptime-leaflet/rat.png',
-          iconSize: [60,50]
+          iconSize: [60, 50]
         });
-        var rodents = L.geoJson(data,{
-          pointToLayer: function(feature,latlng){
-            var marker = L.marker(latlng,{icon: ratIcon});
+        var rodents = L.geoJson(data, {
+          pointToLayer: function(feature, latlng) {
+            var marker = L.marker(latlng, {
+              icon: ratIcon
+            });
             marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
             return marker;
           }
@@ -82,35 +102,42 @@
         clusters.addLayer(rodents);
         map.addLayer(clusters);
       });
-
     </script>
   </div>
 
   <div id="narrative">
     <p>The first map is my "final product" from this series. See other examples in the tutorial below or, <a href="https://github.com/Shadrock/first-leaflet-map">go back to the repo.</a></p>
-    <table style = "width:800">
+    <table style="width:800">
 
       <tr>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/leaflet_map.html" style="border:none;" height="300" width="300"></iframe><br>
-            <p2> <a href="https://shadrock.github.io/first-leaflet-map/leaflet_map.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/leaflet_map.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/leaflet_map.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/leaflet_map.html">Get the code.</a></p>
+        </th>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/more_layers.html" style="border:none;" height="300" width="300"></iframe><br>
-            <p2> <a href="https://shadrock.github.io/first-leaflet-map/more_layers.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/more_layers.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/more_layers.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/more_layers.html">Get the code.</a></p>
+        </th>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/map_own_data.html" style="border:none;" height="300" width="300"></iframe><br>
-            <p2> <a href="https://shadrock.github.io/first-leaflet-map/map_own_data.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/map_own_data.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/map_own_data.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/map_own_data.html">Get the code.</a></p>
+        </th>
       </tr>
       <tr>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/add_style.html" style="border:none;" height="300" width="300"></iframe><br>
-          <p2> <a href="https://shadrock.github.io/first-leaflet-map/add_style.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/add_style.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/add_style.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/add_style.html">Get the code.</a></p>
+        </th>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/interaction.html" style="border:none;" height="300" width="300"></iframe><br>
-          <p2> <a href="https://shadrock.github.io/first-leaflet-map/interaction.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/interaction.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/interaction.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/interaction.html">Get the code.</a></p>
+        </th>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/polygons.html" style="border:none;" height="300" width="300"></iframe><br>
-          <p2> <a href="https://shadrock.github.io/first-leaflet-map/polygons.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/polygons.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/polygons.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/polygons.html">Get the code.</a></p>
+        </th>
       </tr>
       <tr>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/plug_then.html" style="border:none;" height="300" width="300"></iframe><br>
-          <p2> <a href="https://shadrock.github.io/first-leaflet-map/plug_then.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/plug_then.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/plug_then.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/plug_then.html">Get the code.</a></p>
+        </th>
         <th><iframe src="https://shadrock.github.io/first-leaflet-map/more_visual.html" style="border:none;" height="300" width="300"></iframe><br>
-          <p2> <a href="https://shadrock.github.io/first-leaflet-map/more_visual.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/more_visual.html">Get the code.</a></p></th>
+          <p2> <a href="https://shadrock.github.io/first-leaflet-map/more_visual.html">Full-sized map</a>. | <a href="https://github.com/Shadrock/first-leaflet-map/blob/master/more_visual.html">Get the code.</a></p>
+        </th>
       </tr>
 
     </table>
@@ -121,4 +148,5 @@
   </div>
 
 </body>
+
 </html>
