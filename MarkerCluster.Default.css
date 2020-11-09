@@ -1,10 +1,10 @@
 /* This file is a local copy of the cluster .css. I am using it to demonstrate changing cluster colors. */
 
 .marker-cluster-small {
-	background-color: rgba(181, 226, 140, 0.6);
+	background-color: rgba(32, 182, 227, 0.6);
 	}
 .marker-cluster-small div {
-	background-color: rgba(226, 36, 36, 0.6);
+	background-color: rgba(16, 190, 243, 0.6);
 	}
 
 .marker-cluster-medium {
@@ -55,7 +55,7 @@
 
 	text-align: center;
 	border-radius: 15px;
-	font: 18px "Roboto", Arial, Helvetica, sans-serif;
+	font: 28px "Helvetica", Arial, Helvetica, sans-serif;
 	}
 .marker-cluster span {
 	line-height: 30px;
