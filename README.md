@@ -93,7 +93,7 @@ Now you've got appropriately symbolized cluster markers!
 
 ## Map Elements for Improved User Experience
 
-It's easy to forget that, after following the tutorial to build your map, you automatically understand the symbology: but would somebody who's viewing your map for the first time understand it? The tutorial enables popups for each of the neighborhoods, but with popups already enabled on our points, this might be confusing or overwhelming to the user. While I kept the pop ups enabled, I added a legend that contains the information the reader will need to know about the data, colors, and classifications. The tutrial displays point data that shows up as either a rat icon or a cluster marker: neither of which are explained. For good measure, I added a scale bar in the lower left-hand corner of the map for users who aren't familiar with the scale of Boston.
+It's easy to forget that, after following the tutorial to build your map, you automatically understand the symbology: but would somebody who's viewing your map for the first time understand it? The tutorial enables popups for each of the neighborhoods, but with popups already enabled on our points, this might be confusing or overwhelming to the user. While I kept the pop ups enabled, I added a legend that contains the information the user will need to know about the data, colors, and classifications. The tutorial displays point data that shows up as either a rat icon or a cluster marker: neither of which are explained. For good measure, I added a scale bar in the lower left-hand corner of the map for users who aren't familiar with the scale of Boston.
 
 ### Adding a Legend
 Add a legend by creating a Leaflet control, setting the control to populate with HTML that represents the legend components, and styling the HTML with CSS so they render properly. Enter the following block of code to **in between** your `script` tags of your HTML document.
@@ -129,7 +129,7 @@ legend.addTo(map);
 
 In the code above, we created an instance of a [Leaflet Control object](https://leafletjs.com/reference-1.7.1.html#control), calling it `legend`, and used the position option to place it in the `'topright'` of our map. Next, we used the `onAdd` method of the control to run a function when the legend is added. That function creates a new `div`, giving it a class of `legend`. This will let us use CSS to style everything using the `legend` tag. In the newly created div, we populated it with HTML by using a built-in JavaScript method called `innerHTML`. Using innerHTML allows us to change the content of the HTML and add it to the legend div. Using the plus-equal (`+=`) instead of equal (`=`) is the syntax for "append." Everytime this is used, code following it is appended to existing code. We use this to write the HTML we want to use in our legend. Note, the `i` tag represents our legend icons. Within the HTML, fill in the colors and ranges so that they match our data classification. After the HTML is appended, return the `div` element. Lastly, add the legend to the map.
 
-Notice that I rerence two images in the legend: the `rat.png` from the tutorial (in our `images` folder) and a `clusters.png`, which is a screenshot of a cluster marker that I cleaned up a bit and added to the `images` folder.
+Notice that I reference two images in the legend: the `rat.png` from the tutorial (in our `images` folder) and a `clusters.png`, which is a screenshot of a cluster marker that I cleaned up a bit and added to the `images` folder.
 
 Now we have to add the CSS code to style the legend. If you save and refresh without doing this, the items you see won't make much sense since you need to use CSS to give them placement and organization! The following CSS code will style our elements. Enter it between the `style` tags in the head of your HTML document.
 
@@ -171,7 +171,7 @@ First, we set properties for the legend as a whole by using `.legend` to style t
 An alternative method to create a legend uses a For loop conditional statement to add legend elements based on the number of data classification categories you have. There is a "legend" section of [the Leaflet choropleth tutorial that shows this](https://leafletjs.com/examples/choropleth/#custom-legend-control).
 
 ### Adding a Scale Bar
-Although I don't oftn add scale bars to web maps where the geography is really familiar to most users, this map implies (and expects) a user to zoom in to see specific rat sightings. Because some users may not be intimately familiar with the scale of Boston, I added a legend using the following code:
+Although I don't often add scale bars to web maps where the geography is really familiar to most users, this map implies (and expects) a user to zoom in to see specific rat sightings. Because some users may not be intimately familiar with the scale of Boston, I added a legend using the following code:
 
 ```JavaScript
 // Add Scale Bar to Map
