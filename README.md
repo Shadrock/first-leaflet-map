@@ -113,7 +113,7 @@ legend.onAdd = function (map) {
   div.innerHTML += '<i style="background: #d95f0e"></i><p>> 40</p>';
   div.innerHTML += '<i style="background: #fe9929"></i><p>> 20</p>';
   div.innerHTML += '<i style="background: #fed98e"></i><p>> 10</p>';
-  div.innerHTML += '<i style="background: #ffffd4"></i><p>0</p>';
+  div.innerHTML += '<i style="background: #ffffd4"></i><p>> 0</p>';
   div.innerHTML += '<i style="background: #f7f7f7"></i><p>No Data</p>’;
   div.innerHTML += '<hr><img src="images/rat.png"><p>Rat sighting.</p>';
   div.innerHTML += '<img src="images/clusters.png"><p>Grouped rat sightings.</p>';
