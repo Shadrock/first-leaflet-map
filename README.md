@@ -96,7 +96,7 @@ Now you've got appropriately symbolized cluster markers!
 It's easy to forget that, after following the tutorial to build your map, you automatically understand the symbology: but would somebody who's viewing your map for the first time understand it? The tutorial enables popups for each of the neighborhoods, but with popups already enabled on our points, this might be confusing or overwhelming to the user. While I kept the pop ups enabled, I added a legend that contains the information the user will need to know about the data, colors, and classifications. The tutorial displays point data that shows up as either a rat icon or a cluster marker: neither of which are explained. For good measure, I added a scale bar in the lower left-hand corner of the map for users who aren't familiar with the scale of Boston.
 
 ### Adding a Legend
-Add a legend by creating a Leaflet control, setting the control to populate with HTML that represents the legend components, and styling the HTML with CSS so they render properly. Enter the following block of code to **in between** your `script` tags of your HTML document.
+Add a legend by creating a Leaflet control, setting the control to populate with HTML that represents the legend components, and styling the HTML with CSS so they render properly. Enter the following block of code **in between** the `script` tags of your HTML document.
 
 ```JavaScript
 // Create Leaflet Control Object for Legend
